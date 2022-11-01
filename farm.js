@@ -1,12 +1,14 @@
 // getYieldForPlant
-const getYieldForPlant = (crops) => {
+const getYieldForPlant = (plant) => {
   // return yield for plant with no environmental factors
-  return crops.yield;
+  return plant.yield;
 };
 
 //getYieldForCrop
-const getYieldForCrop = () => {
-  console.log(crops);
+// return yield for crop with no environmental factors
+const getYieldForCrop = (crops) => {
+  result = getYieldForPlant(crops.crop) * crops.numCrops;
+  return result;
 };
 
 //getTotalYield
