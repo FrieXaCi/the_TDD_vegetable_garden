@@ -12,7 +12,12 @@ const getYieldForCrop = (crops) => {
 };
 
 //getTotalYield
+const getTotalYield = (crops) => {
+  console.log(crops);
+};
+
 module.exports = {
   getYieldForPlant,
   getYieldForCrop,
+  getTotalYield,
 };
