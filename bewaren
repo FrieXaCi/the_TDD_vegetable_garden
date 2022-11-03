@@ -1,0 +1,4 @@
+crops.forEach((crop) => {
+  let totalYield = getYieldForCrop(crop);
+  console.log(totalYield);
+});

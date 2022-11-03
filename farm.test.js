@@ -1,5 +1,11 @@
-const { getYieldForPlant, getYieldForCrop, getTotalYield } = require('./farm');
+const {
+  getYieldForPlant,
+  getYieldForCrop,
+  getTotalYield,
+  getCostsForCrop,
+} = require('./farm');
 
+// tests bij WINC Academy get yield for plant
 describe('getYieldForPlant', () => {
   const corn = {
     name: 'corn',
@@ -11,6 +17,7 @@ describe('getYieldForPlant', () => {
   });
 });
 
+// tests bij WINC Academy get yield bij crop
 describe('getYieldForCrop', () => {
   test('Get yield for crop, simple', () => {
     const corn = {
@@ -25,6 +32,7 @@ describe('getYieldForCrop', () => {
   });
 });
 
+// tests bij WINC Academy get total yield
 describe('getTotalYield', () => {
   test('Calculate total yield with multiple crops', () => {
     const corn = {
@@ -39,6 +47,7 @@ describe('getTotalYield', () => {
       { crop: corn, numCrops: 5 },
       { crop: pumpkin, numCrops: 2 },
     ];
+
     expect(getTotalYield({ crops })).toBe(23);
   });
 
@@ -49,5 +58,23 @@ describe('getTotalYield', () => {
     };
     const crops = [{ crop: corn, numCrops: 0 }];
     expect(getTotalYield({ crops })).toBe(0);
+  });
+});
+
+// Tests written by Frieda Haringsma
+// get Costs For Crop
+
+describe('getTotalYield', () => {
+  test('calculate cost for a crop', () => {
+    const corn = {
+      name: 'corn',
+      yield: 3,
+    };
+    const input = {
+      crop: corn,
+      numCrops: 10,
+      costPrice: 2,
+    };
+    expect(getCostsForCrop(input)).toBe(20);
   });
 });

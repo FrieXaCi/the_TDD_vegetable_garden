@@ -12,6 +12,9 @@ const getYieldForCrop = (crops) => {
 };
 
 //getTotalYield
+// Calculate total yield with multiple crops
+// Calculate total yield with 0 amount
+
 const getTotalYield = ({ crops }) => {
   let result = 0;
   crops.forEach((crop) => {
@@ -19,9 +22,20 @@ const getTotalYield = ({ crops }) => {
   });
   return result;
 };
+// getCostsForCrop
+const getCostsForCrop = (crop) => {
+  let costPerCrop = crop.costPrice * crop.numCrops;
+  return costPerCrop;
+};
+//getRevenueForCrop
+
+//getProfitForCrop
+
+//getTotalProfit
 
 module.exports = {
   getYieldForPlant,
   getYieldForCrop,
   getTotalYield,
+  getCostsForCrop,
 };
