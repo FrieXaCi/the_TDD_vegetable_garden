@@ -5,6 +5,7 @@ const {
   getCostsForCrop,
   getRevenueForCrop,
   getProfitForCrop,
+  getTotalProfit,
 } = require('./farm');
 
 // tests bij WINC Academy get yield for plant
@@ -109,5 +110,25 @@ describe('Calculate profit for a crop', () => {
       salesPrice: 1.6,
     };
     expect(getProfitForCrop(input)).toBe(12);
+  });
+});
+// get total profit
+describe('get Total Profit', () => {
+  test('Calculate total profit with multiple crops', () => {
+    const pears = {
+      name: 'pears',
+      yield: 0.6,
+    };
+    const cherries = {
+      name: 'cherries',
+      yield: 0.1,
+    };
+    const crops = [
+      { crop: pears, numCrops: 5, costPrice: 0.25, salesPrice: 0.75 },
+
+      { crop: cherries, numCrops: 2, costPrice: 0.05, salesPrice: 0.75 },
+    ];
+
+    expect(getTotalYield({ crops })).toBe(3.2);
   });
 });

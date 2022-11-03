@@ -40,6 +40,13 @@ const getProfitForCrop = (crop) => {
 };
 
 //getTotalProfit
+const getTotalProfit = ({ crops }) => {
+  let result = 0;
+  crops.forEach((crop) => {
+    result += getProfitForCrop(crop);
+  });
+  return result;
+};
 
 module.exports = {
   getYieldForPlant,
@@ -48,4 +55,5 @@ module.exports = {
   getCostsForCrop,
   getRevenueForCrop,
   getProfitForCrop,
+  getTotalProfit,
 };
