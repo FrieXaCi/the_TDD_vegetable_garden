@@ -3,6 +3,7 @@ const {
   getYieldForCrop,
   getTotalYield,
   getCostsForCrop,
+  getRevenueForCrop,
 } = require('./farm');
 
 // tests bij WINC Academy get yield for plant
@@ -64,7 +65,7 @@ describe('getTotalYield', () => {
 // Tests written by Frieda Haringsma
 // get Costs For Crop
 
-describe('getTotalYield', () => {
+describe('Calculate cost for a crop', () => {
   test('calculate cost for a crop', () => {
     const corn = {
       name: 'corn',
@@ -76,5 +77,21 @@ describe('getTotalYield', () => {
       costPrice: 2,
     };
     expect(getCostsForCrop(input)).toBe(20);
+  });
+});
+
+// //getRevenueForCrop
+describe('Calculate revenue for a crop', () => {
+  test('calculate revenue for a crop', () => {
+    const corn = {
+      name: 'corn',
+      yield: 3,
+    };
+    const input = {
+      crop: corn,
+      numCrops: 10,
+      salesPrice: 4,
+    };
+    expect(getRevenueForCrop(input)).toBe(40);
   });
 });
