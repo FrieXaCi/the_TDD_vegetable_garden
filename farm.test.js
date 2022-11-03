@@ -67,47 +67,47 @@ describe('getTotalYield', () => {
 // get Costs For Crop
 describe('Calculate cost for a crop', () => {
   test('calculate cost for a crop', () => {
-    const corn = {
-      name: 'corn',
-      yield: 3,
+    const tomatoes = {
+      name: 'tomatoes',
+      yield: 0.5,
     };
     const input = {
-      crop: corn,
+      crop: tomatoes,
       numCrops: 10,
-      costPrice: 2,
+      costPrice: 0.4,
     };
-    expect(getCostsForCrop(input)).toBe(20);
+    expect(getCostsForCrop(input)).toBe(2);
   });
 });
 
 // //get Revenue For Crop
 describe('Calculate revenue for a crop', () => {
   test('calculate revenue for a crop', () => {
-    const corn = {
-      name: 'corn',
+    const apples = {
+      name: 'apples',
       yield: 3,
     };
     const input = {
-      crop: corn,
+      crop: apples,
       numCrops: 10,
-      salesPrice: 4,
+      salesPrice: 0.25,
     };
-    expect(getRevenueForCrop(input)).toBe(40);
+    expect(getRevenueForCrop(input)).toBe(7.5);
   });
 });
 // get Profit For Crop
-describe.only('Calculate profit for a crop', () => {
+describe('Calculate profit for a crop', () => {
   test('calculate profit for a crop', () => {
-    const corn = {
-      name: 'corn',
-      yield: 3,
+    const bananas = {
+      name: 'bananas',
+      yield: 1.5,
     };
     const input = {
-      crop: corn,
+      crop: bananas,
       numCrops: 10,
-      costPrice: 2,
-      salesPrice: 4,
+      costPrice: 0.8,
+      salesPrice: 1.6,
     };
-    expect(getProfitForCrop(input)).toBe(20);
+    expect(getProfitForCrop(input)).toBe(12);
   });
 });

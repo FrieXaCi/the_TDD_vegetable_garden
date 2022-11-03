@@ -24,12 +24,12 @@ const getTotalYield = ({ crops }) => {
 };
 // getCostsForCrop
 const getCostsForCrop = (crop) => {
-  let costPerCrop = crop.costPrice * crop.numCrops;
+  let costPerCrop = crop.costPrice * getYieldForCrop(crop);
   return costPerCrop;
 };
 //getRevenueForCrop
 const getRevenueForCrop = (crop) => {
-  let revenuePerCrop = crop.salesPrice * crop.numCrops;
+  let revenuePerCrop = crop.salesPrice * getYieldForCrop(crop);
   return revenuePerCrop;
 };
 
