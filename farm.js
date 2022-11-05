@@ -1,5 +1,9 @@
 // getYieldForPlant
-const getYieldForPlant = (plant) => {
+const getYieldForPlant = (plant, factor) => {
+  // return yield with environmental factors
+  if (plant + factor) {
+    console.log(plant.factor);
+  }
   // return yield for plant with no environmental factors
   return plant.yield;
 };

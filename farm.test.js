@@ -18,6 +18,25 @@ describe('getYieldForPlant', () => {
   test('Get yield for plant with no environment factors', () => {
     expect(getYieldForPlant(corn)).toBe(30);
   });
+  test('Get yield for plant with environment factors', () => {
+    const corn = {
+      name: 'corn',
+      yield: 30,
+      factor: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+      },
+    };
+
+    const environmentFactors = {
+      sun: 'low',
+    };
+    console.log(corn, environmentFactors);
+    expect(getYieldForPlant(corn, environmentFactors)).toBe(15);
+  });
 });
 
 // tests bij WINC Academy get yield bij crop
@@ -126,9 +145,9 @@ describe('get Total Profit', () => {
     const crops = [
       { crop: pears, numCrops: 5, costPrice: 0.25, salesPrice: 0.75 },
 
-      { crop: cherries, numCrops: 2, costPrice: 0.05, salesPrice: 0.75 },
+      { crop: cherries, numCrops: 2, costPrice: 0.5, salesPrice: 1.75 },
     ];
 
-    expect(getTotalYield({ crops })).toBe(3.2);
+    expect(getTotalProfit({ crops })).toBe(1.75);
   });
 });
