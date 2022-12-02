@@ -308,3 +308,41 @@ describe('Calculate revenue for a crop with environmental factors', () => {
     expect(getRevenueForCrop(input, environmentFactors2)).toBe(1.5);
   });
 });
+
+// get Profit For Crop with environmental factors
+describe('Calculate profit for a crop', () => {
+  test('calculate profit for a crop', () => {
+    const bananas = {
+      name: 'bananas',
+      yield: 1.5,
+      factor: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        monkeys: {
+          low: 100,
+          medium: 50,
+          high: -100,
+        },
+      },
+    };
+    const input = {
+      crop: bananas,
+      numCrops: 10,
+      costPrice: 0.8,
+      salesPrice: 1.6,
+    };
+    const environmentFactors1 = {
+      sun: 'high',
+      monkeys: 'low',
+    };
+    const environmentFactors2 = {
+      sun: 'low',
+      monkeys: 'high',
+    };
+    expect(getProfitForCrop(input, environmentFactors1)).toBe(60);
+    expect(getProfitForCrop(input, environmentFactors2)).toBe(-12);
+  });
+});

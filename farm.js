@@ -51,8 +51,9 @@ const getRevenueForCrop = (crop, factor) => {
 };
 
 //getProfitForCrop
-const getProfitForCrop = (crop) => {
-  let profitPerCrop = getRevenueForCrop(crop) - getCostsForCrop(crop);
+const getProfitForCrop = (crop, factor) => {
+  let profitPerCrop =
+    getRevenueForCrop(crop, factor) - getCostsForCrop(crop, factor);
   return profitPerCrop;
 };
 
