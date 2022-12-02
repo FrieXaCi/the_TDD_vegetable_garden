@@ -13,29 +13,10 @@ describe('getYieldForPlant', () => {
   const corn = {
     name: 'corn',
     yield: 30,
-    factor: {
-      sun: {
-        low: -50,
-        medium: 0,
-        high: 50,
-      },
-    },
-  };
-
-  const environmentFactors = {
-    sun: 'low',
   };
 
   test('Get yield for plant with no environment factors', () => {
-    const corn = {
-      name: 'corn',
-      yield: 30,
-    };
-
     expect(getYieldForPlant(corn)).toBe(30);
-  });
-  test('Get yield for plant with environment factors', () => {
-    expect(getYieldForPlant(corn, environmentFactors)).toBe(15);
   });
 });
 
@@ -149,5 +130,86 @@ describe('get Total Profit', () => {
     ];
 
     expect(getTotalProfit({ crops })).toBe(1.75);
+  });
+});
+
+// get plant yield with environmental factors
+describe('get plantyield with environmental factors', () => {
+  const corn = {
+    name: 'corn',
+    yield: 30,
+    factor: {
+      sun: {
+        low: -50,
+        medium: 0,
+        high: 50,
+      },
+    },
+  };
+
+  const environmentFactors = {
+    sun: 'low',
+  };
+
+  test('Get yield for plant with environment factors', () => {
+    expect(getYieldForPlant(corn, environmentFactors)).toBe(15);
+  });
+});
+describe('get plantyield with environmental factors', () => {
+  const corn = {
+    name: 'corn',
+    yield: 30,
+    factor: {
+      sun: {
+        low: -50,
+        medium: 0,
+        high: 50,
+      },
+      wind: {
+        low: 100,
+        medium: 50,
+        high: -60,
+      },
+    },
+  };
+
+  const environmentFactors = {
+    sun: 'low',
+    wind: 'high',
+  };
+
+  test('Get yield for plant with environment factors', () => {
+    expect(getYieldForPlant(corn, environmentFactors)).toBe(6);
+  });
+});
+describe('getYieldForCrop', () => {
+  test('Get yield for crop, with factors', () => {
+    const bananas = {
+      name: 'bananas',
+      yield: 3,
+      factor: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 100,
+          medium: 50,
+          high: -60,
+        },
+        monkeys: {
+          low: 100,
+          medium: 50,
+          high: -100,
+        },
+      },
+    };
+    const environmentFactors = {
+      monkeys: 'high',
+      wind: 'low',
+    };
+
+    expect(getYieldForCrop(bananas, environmentFactors)).toBe(0);
   });
 });
