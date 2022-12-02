@@ -1,7 +1,9 @@
 // getYieldForPlant
+
 const getYieldForPlant = (plant, factor) => {
   if (factor) {
     let environmentalFactor = plant.yield;
+    console.log(environmentalFactor);
     for (let item in factor) {
       if (plant.factor[item][factor[item]] < 0) {
         environmentalFactor =

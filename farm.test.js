@@ -182,34 +182,41 @@ describe('get plantyield with environmental factors', () => {
     expect(getYieldForPlant(corn, environmentFactors)).toBe(6);
   });
 });
-describe('getYieldForCrop', () => {
-  test('Get yield for crop, with factors', () => {
-    const bananas = {
-      name: 'bananas',
-      yield: 3,
-      factor: {
-        sun: {
-          low: -50,
-          medium: 0,
-          high: 50,
-        },
-        wind: {
-          low: 100,
-          medium: 50,
-          high: -60,
-        },
-        monkeys: {
-          low: 100,
-          medium: 50,
-          high: -100,
-        },
+// get yield for crop with environmental factors
+describe('get yield for crops with environmental factors', () => {
+  const bananas = {
+    name: 'bananas',
+    yield: 3,
+    factor: {
+      sun: {
+        low: -50,
+        medium: 0,
+        high: 50,
       },
-    };
-    const environmentFactors = {
-      monkeys: 'high',
-      wind: 'low',
-    };
-
-    expect(getYieldForCrop(bananas, environmentFactors)).toBe(0);
-  });
+      wind: {
+        low: 100,
+        medium: 50,
+        high: -60,
+      },
+    },
+  };
+  const input = {
+    crop: bananas,
+    numCrops: 10,
+  };
+  const environmentFactors1 = {
+    sun: 'low',
+    wind: 'high',
+  };
+  const environmentFactors2 = {
+    sun: 'medium',
+    wind: 'medium',
+  };
+  const environmentFactors3 = {
+    sun: 'medium',
+    wind: 'low',
+  };
+  expect(getYieldForCrop(input, environmentFactors1)).toBe(6);
+  expect(getYieldForCrop(input, environmentFactors2)).toBe(45);
+  expect(getYieldForCrop(input, environmentFactors3)).toBe(60);
 });
