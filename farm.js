@@ -31,10 +31,10 @@ const getYieldForCrop = (crops, factor) => {
 // Calculate total yield with multiple crops
 // Calculate total yield with 0 amount
 
-const getTotalYield = ({ crops }) => {
+const getTotalYield = ({ crops }, factor) => {
   let result = 0;
   crops.forEach((crop) => {
-    result += getYieldForCrop(crop);
+    result += getYieldForCrop(crop, factor);
   });
   return result;
 };
