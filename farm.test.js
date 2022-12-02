@@ -310,8 +310,8 @@ describe('Calculate revenue for a crop with environmental factors', () => {
 });
 
 // get Profit For Crop with environmental factors
-describe('Calculate profit for a crop', () => {
-  test('calculate profit for a crop', () => {
+describe('Calculate profit for a crop with environmental factor', () => {
+  test('calculate profit for a crop with environmenatl factor', () => {
     const bananas = {
       name: 'bananas',
       yield: 1.5,
@@ -344,5 +344,60 @@ describe('Calculate profit for a crop', () => {
     };
     expect(getProfitForCrop(input, environmentFactors1)).toBe(60);
     expect(getProfitForCrop(input, environmentFactors2)).toBe(-12);
+  });
+});
+// get total profit with environmental factor
+describe('get Total Profit environmental factor', () => {
+  test('Calculate total profit with multiple crops environmental factor', () => {
+    const pears = {
+      name: 'pears',
+      yield: 0.6,
+      factor: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 100,
+          medium: 50,
+          high: -60,
+        },
+      },
+    };
+    const cherries = {
+      name: 'cherries',
+      yield: 0.1,
+      factor: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 100,
+          medium: 50,
+          high: -60,
+        },
+      },
+    };
+    const crops = [
+      {
+        crop: pears,
+        numCrops: 5,
+        costPrice: 0.25,
+        salesPrice: 0.75,
+        factor: { sun: 'high', wind: 'low' },
+      },
+
+      {
+        crop: cherries,
+        numCrops: 2,
+        costPrice: 0.5,
+        salesPrice: 1.75,
+        factor: { sun: 'high', wind: 'low' },
+      },
+    ];
+    expect(getTotalProfit({ crops })).toBe(1.75);
   });
 });
