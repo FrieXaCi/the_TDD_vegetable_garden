@@ -1,21 +1,28 @@
 // getYieldForPlant
-const getYieldForPlant = (plant, factors) => {
-  factors = plant.factor;
-  if (!factors) {
-    let plantYield = plant.yield;
-    return plantYield;
-  } else if (factors) {
-    // return yield for plant with environmental factors
-    console.log(factors.sun.low, plant.yield);
-    return (plant.yield * (100 + factors.sun.low)) / 100;
+const getYieldForPlant = (plant, factor) => {
+  if (factor) {
+    let environmentalFactor = plant.yield;
+    for (let item in factor) {
+      if (plant.factor[item][factor[item]] < 0) {
+        environmentalFactor =
+          environmentalFactor *
+          (1 - -1 * (plant.factor[item][factor[item]] / 100));
+      } else {
+        environmentalFactor =
+          environmentalFactor * (1 + plant.factor[item][factor[item]] / 100);
+      }
+    }
+    return Math.round(environmentalFactor * 100) / 100;
   }
+  return plant.yield;
 };
-
 //getYieldForCrop
 // return yield for crop with no environmental factors
-const getYieldForCrop = (crops) => {
-  result = getYieldForPlant(crops.crop) * crops.numCrops;
-  return result;
+const getYieldForCrop = (crops, factor) => {
+  if (factor) {
+    return getYieldForPlant(crops.crop, factor) * crops.numCrops;
+  }
+  return getYieldForPlant(crops.crop) * crops.numCrops;
 };
 
 //getTotalYield
