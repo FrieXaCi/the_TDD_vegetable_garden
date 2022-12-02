@@ -271,13 +271,40 @@ describe('getTotalYield', () => {
     expect(getTotalYield({ crops }, environmentFactors1)).toBe(46);
     expect(getTotalYield({ crops }, environmentFactors2)).toBe(23);
   });
-
-  test('Calculate total yield with 0 amount with factors', () => {
-    const corn = {
-      name: 'corn',
+});
+// get RevenueFoCrop with environmental factors
+describe('Calculate revenue for a crop with environmental factors', () => {
+  test('calculate revenue for a crop', () => {
+    const apples = {
+      name: 'apples',
       yield: 3,
+      factor: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 100,
+          medium: 50,
+          high: -60,
+        },
+      },
     };
-    const crops = [{ crop: corn, numCrops: 0 }];
-    expect(getTotalYield({ crops })).toBe(0);
+    const input = {
+      crop: apples,
+      numCrops: 10,
+      salesPrice: 0.25,
+    };
+    const environmentFactors1 = {
+      sun: 'high',
+      wind: 'low',
+    };
+    const environmentFactors2 = {
+      sun: 'low',
+      wind: 'high',
+    };
+    expect(getRevenueForCrop(input, environmentFactors1)).toBe(22.5);
+    expect(getRevenueForCrop(input, environmentFactors2)).toBe(1.5);
   });
 });

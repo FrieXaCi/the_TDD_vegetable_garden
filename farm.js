@@ -3,7 +3,7 @@
 const getYieldForPlant = (plant, factor) => {
   if (factor) {
     let environmentalFactor = plant.yield;
-    console.log(environmentalFactor);
+
     for (let item in factor) {
       if (plant.factor[item][factor[item]] < 0) {
         environmentalFactor =
@@ -23,8 +23,9 @@ const getYieldForPlant = (plant, factor) => {
 const getYieldForCrop = (crops, factor) => {
   if (factor) {
     return getYieldForPlant(crops.crop, factor) * crops.numCrops;
+  } else {
+    return getYieldForPlant(crops.crop) * crops.numCrops;
   }
-  return getYieldForPlant(crops.crop) * crops.numCrops;
 };
 
 //getTotalYield
@@ -44,8 +45,8 @@ const getCostsForCrop = (crop) => {
   return costPerCrop;
 };
 //getRevenueForCrop
-const getRevenueForCrop = (crop) => {
-  let revenuePerCrop = crop.salesPrice * getYieldForCrop(crop);
+const getRevenueForCrop = (crop, factor) => {
+  let revenuePerCrop = crop.salesPrice * getYieldForCrop(crop, factor);
   return revenuePerCrop;
 };
 
